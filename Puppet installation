@@ -34,6 +34,12 @@ $ sudo nano /etc/hosts
 $ sudo systemctl start puppet
 $ sudo systemctl enable puppet
 
+On the client server add master  server as below
+
+root@puppet-client:~# cat /etc/puppet/puppet.conf 
+[agent]
+server=puppet-master
+
 
 Step 3: Make changes to the hosts file which exists in /etc/hosts. And add the Puppet
 Master IP address along with the name “puppet”
@@ -57,7 +63,6 @@ $ sudo systemctl enable puppet
 
 
 On Master
-
 $ sudo puppet cert list
 
 Step 2: Finally, sign the listed certificate using the following command:
