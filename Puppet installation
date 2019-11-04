@@ -40,6 +40,9 @@ root@puppet-client:~# cat /etc/puppet/puppet.conf
 [agent]
 server=puppet-master
 
+testing which is our puppet master from client
+root@puppet-client:~# puppet agent --configprint server
+
 
 Step 3: Make changes to the hosts file which exists in /etc/hosts. And add the Puppet
 Master IP address along with the name “puppet”
