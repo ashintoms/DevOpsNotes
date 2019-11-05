@@ -2,6 +2,8 @@ PUPPET INSTALLATION
 
 PUPPET INSTALLATION ON UBUNTU
 
+Add hosts files on master and client, if not get dns configured
+
 Installing Puppet Master
 Step 1: Run the following commands for installing Puppet Master
 $ sudo apt-get update
@@ -12,6 +14,10 @@ $ sudo apt-get update
 
 $ sudo apt-get install puppet-master
 $ sudo systemctl status puppet-master.service
+
+thomasa@puppet-master:~$ puppet --version
+5.4.0
+thomasa@puppet-mast
 
 Add the following lines in the puppet-master configuration file
 Next open port 8140 on the Puppet Master’s firewall
@@ -28,17 +34,27 @@ $ sudo apt-get update
 $ sudo apt-get install wget
 $ wget https://apt.puppetlabs.com/puppet-release-bionic.deb
 $ sudo dpkg -i puppet-release-bionic.deb
+sudo apt-get update
 $ sudo apt-get install puppet
 $ sudo nano /etc/hosts
    add ip address of the master
 $ sudo systemctl start puppet
 $ sudo systemctl enable puppet
+sudo systemctl status puppet
+
+
+ov 05 21:50:43 puppet-client1 systemd[1]: Starting Puppet agent...
+Nov 05 21:50:44 puppet-client1 puppet-agent[2994]: Reopening log files
+Nov 05 21:50:44 puppet-client1 systemd[1]: Started Puppet agent.
+Nov 05 21:50:46 puppet-client1 puppet-agent[2994]: Could not request certificat
+lines 1-14/14 (END)
+
 
 On the client server add master  server as below
 
 root@puppet-client:~# cat /etc/puppet/puppet.conf 
 [agent]
-server=puppet-master
+server = puppet-master.broadband
 
 testing which is our puppet master from client
 root@puppet-client:~# puppet agent --configprint server
